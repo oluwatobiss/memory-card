@@ -1,7 +1,15 @@
+import AboutApp from './components/AboutApp'
+import GameArena from './components/GameArena'
+import ScoreBoard from './components/ScoreBoard'
+
 function App() {
   return (
-    <div>Joy!</div>
+    <div id='app-sections'>
+      <AboutApp />
+      <GameArena />
+      <ScoreBoard />
+    </div>
   );
 }
 
-export default App;
+export default App
