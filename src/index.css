@@ -82,11 +82,23 @@ a:hover { color: var(--cafe-noir); }
   font-size: .9rem;
   font-weight: 400;
   text-align: center;
-  color: var(--pale-brown);
 }
 
 .card-article:hover > .card-text-div {
   visibility: visible;
+}
+
+.image-credit {
+  display: inline-block;
+  color: var(--pale-brown);
+}
+
+.image-credit::first-letter {
+  text-transform: uppercase;
+}
+
+.image-credit:hover {
+  color: wheat;
 }
 
 #score-board-div {

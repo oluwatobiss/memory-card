@@ -8,4 +8,4 @@ function AboutApp() {
     )
 }
 
-export default AboutApp
+export default AboutApp;

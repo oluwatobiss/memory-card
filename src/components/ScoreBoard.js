@@ -29,4 +29,4 @@ function ScoreBoard() {
     )
 }
 
-export default ScoreBoard
+export default ScoreBoard;
