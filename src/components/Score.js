@@ -3,7 +3,7 @@ function Score(props) {
         <div className='score-div'>
             <span className='score-div-icon'>{props.icon}</span>
             <span className='score-div-text'>{props.text}</span>
-            <span className='score-div-numb'>{props.numb}</span>
+            <span id={props.id} className='score-div-numb'>{props.numb}</span>
         </div>
     )
 }

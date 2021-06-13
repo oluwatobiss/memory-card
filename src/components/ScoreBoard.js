@@ -1,30 +1,29 @@
-import { useState } from 'react'
 import Score from './Score'
 
 function ScoreBoard() {
-    const [currentScore, setCurrentScore] = useState({
+    const currentScore = {
         icon: '⏳',
         text: 'Current Score',
-        numb: 7
-    })
+        numb: 0
+    };
 
-    const [bestScore, setBestScore] = useState({
+    const bestScore = {
         icon: '⭐',
         text: 'Best Score',
-        numb: 51
-    })
+        numb: 0
+    };
 
-    const [currentLevel, setCurrentLevel] = useState({
+    const currentLevel = {
         icon: '📌',
         text: 'Current Level',
-        numb: 2
-    })
+        numb: null
+    };
 
     return (
         <div id='score-board-div'>
-            <Score icon={currentScore.icon} text={currentScore.text} numb={currentScore.numb} />
-            <Score icon={bestScore.icon} text={bestScore.text} numb={bestScore.numb} />
-            <Score icon={currentLevel.icon} text={currentLevel.text} numb={currentLevel.numb} />
+            <Score id='current-score' icon={currentScore.icon} text={currentScore.text} numb={currentScore.numb} />
+            <Score id='best-score' icon={bestScore.icon} text={bestScore.text} numb={bestScore.numb} />
+            <Score id='current-level' icon={currentLevel.icon} text={currentLevel.text} numb={currentLevel.numb} />
         </div>
     )
 }

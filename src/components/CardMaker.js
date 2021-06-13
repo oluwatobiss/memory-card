@@ -33,7 +33,7 @@ function CardMaker(props) {
     }
 
     return (
-        <article className='card-article' style={cardImage}>
+        <article id={props.id} className='card-article' style={cardImage}>
             <div className='card-dummy-div'></div>
             <div className='card-text-div'>
                 <a className="image-credit" target="_blank" rel='noreferrer' href={photographer.page}>
