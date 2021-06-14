@@ -53,16 +53,13 @@ function GameArena() {
                 });
             }
             newLevel = false;
-            console.log(idOfEachCardOnDisplay);
-            console.log(currentScore);
-            console.log(currentLevel);
             console.log(`Current score is: ${currentScore}`);
         } else {
             setCurrentScore(0);
             setCurrentLevel(1);
             idOfEachCardOnDisplay = [];
             updateCurrScoreOnDisplay(0);
-            console.log("Gave over! You previously selected that card. Try again.");
+            alert("Gave over! You previously selected that card. Try again.");
         }
     }
 
@@ -79,7 +76,15 @@ function GameArena() {
 
     return (
         <div id='game-arena-div'>
-            {cards.sort(() => Math.random() - 0.5)}
+            {
+                (function shuffleCards(arr) {
+                    for (let i = arr.length - 1; i > 0; i--) {
+                      const randomIndNum = Math.floor(Math.random() * (i + 1));
+                      [arr[i], arr[randomIndNum]] = [arr[randomIndNum], arr[i]];
+                    }
+                    return arr;
+                })(cards)
+            }
         </div>
     )
 }
