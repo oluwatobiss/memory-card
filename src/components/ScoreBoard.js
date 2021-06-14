@@ -16,7 +16,7 @@ function ScoreBoard() {
     const currentLevel = {
         icon: '📌',
         text: 'Current Level',
-        numb: null
+        numb: 1
     };
 
     return (

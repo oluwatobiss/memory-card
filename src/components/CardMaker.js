@@ -10,7 +10,7 @@ function CardMaker(props) {
     let cardImage = { backgroundColor: 'white' };
 
     useEffect(() => {
-        fetch('https://pixabay.com/api/?key=1675259-94795a0b768aa02bfe95f3865&q=flowers&image_type=photo&orientation=horizontal')
+        fetch('https://pixabay.com/api/?key=1675259-94795a0b768aa02bfe95f3865&q=flowers&image_type=photo&orientation=horizontal&per_page=132')
         .then(response => response.json())
         .then(jsonResult => setImagesData(jsonResult))
         .catch(() => console.log('Something went wrong'))

@@ -12,7 +12,27 @@ function GameArena() {
     const [currentLevel, setCurrentLevel] = useState(1);
     const [currentScore, setCurrentScore] = useState(0);
 
+    function updateCurrScoreOnDisplay(newScore) {
+        const nodeOfCurrentScore = document.getElementById('current-score');
+        nodeOfCurrentScore.innerText = newScore;
+    }
+
     function updateLevelsData() {
+        if (currentLevel > 30) {
+            alert(
+                `
+                Wow! Congratulations 🤝
+                You've won the game with a maximum score of ${currentScore} 🥇🏆🎉 
+                Try another round.
+                `
+            );
+            setCurrentScore(0);
+            setCurrentLevel(1);
+            idOfEachCardOnDisplay = [];
+            updateCurrScoreOnDisplay(0);
+            return;
+        }
+
         const newCards = [];
         const nodeOfCurrentLevel = document.getElementById('current-level');
 
@@ -28,11 +48,6 @@ function GameArena() {
     }
 
     function updateGameData(i) {
-        function updateCurrScoreOnDisplay(newScore) {
-            const nodeOfCurrentScore = document.getElementById('current-score');
-            nodeOfCurrentScore.innerText = newScore;
-        }
-
         if (!idOfEachCardOnDisplay.includes(i.id)) {
             idOfEachCardOnDisplay.push(i.id);
             setCurrentScore(c => {
@@ -53,7 +68,6 @@ function GameArena() {
                 });
             }
             newLevel = false;
-            console.log(`Current score is: ${currentScore}`);
         } else {
             setCurrentScore(0);
             setCurrentLevel(1);
@@ -65,26 +79,26 @@ function GameArena() {
 
     function configClickEvent() {
         const cardsOnDisplay = document.getElementsByClassName('card-article');
-        if (newLevel) {
-            Array.from(cardsOnDisplay).forEach( i => i.addEventListener('click', () => updateGameData(i)));
-        }
+        newLevel && Array.from(cardsOnDisplay).forEach( i => i.addEventListener('click', () => updateGameData(i)));
         return () => Array.from(cardsOnDisplay).forEach(i => i.removeEventListener('click', updateGameData));
     }
 
+    function shuffleCards(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+          const randomIndNum = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[randomIndNum]] = [arr[randomIndNum], arr[i]];
+        }
+        return arr;
+    }
+
+    // I intentionally omitted currentScore in updateLevelsData's dependency array 
+    // to prevent updateLevelsData's execution each time the score changes.
     useEffect(updateLevelsData, [currentLevel]);
     useEffect(configClickEvent);
 
     return (
         <div id='game-arena-div'>
-            {
-                (function shuffleCards(arr) {
-                    for (let i = arr.length - 1; i > 0; i--) {
-                      const randomIndNum = Math.floor(Math.random() * (i + 1));
-                      [arr[i], arr[randomIndNum]] = [arr[randomIndNum], arr[i]];
-                    }
-                    return arr;
-                })(cards)
-            }
+            { shuffleCards(cards) }
         </div>
     )
 }
